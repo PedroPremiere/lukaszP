@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
+import 'dotenv/config'
+import mongoose from 'mongoose'
+
 mongoose.set("strictQuery", false);
 
-const connectDb = async () => {
+export const connectDb = async () => {
   try {
     await mongoose.connect(process.env.DB_URL);
 
@@ -12,4 +14,3 @@ const connectDb = async () => {
   }
 };
 
-module.exports = { connectDb };

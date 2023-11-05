@@ -1,10 +1,13 @@
-const express = require('express')
-const logger = require('morgan')
-const cors = require('cors')
+import cors from 'cors'
+import logger from 'morgan'
+import express from 'express'
 
-const contactsRouter = require('./routes/api/contacts')
+import {contactsRouter} from './routes/api/contacts'
+import { connectDb } from './db/connection.js'
 
 const app = express()
+
+connectDb();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
@@ -22,4 +25,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message })
 })
 
-module.exports = app
+
+
+export {app};
